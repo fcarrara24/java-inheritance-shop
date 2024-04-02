@@ -3,12 +3,12 @@ package org.learning.shop;
 import java.awt.*;
 import java.math.BigDecimal;
 
-public class Cuffie extends Televisori{
+public class Cuffie extends Prodotto{
     private Color colore;
     private boolean wireless;
 
-    public Cuffie(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva, BigDecimal altezza, BigDecimal lunghezza, boolean smart, int colore, boolean wireless) {
-        super(codice, nome, marca, prezzo, iva, altezza, lunghezza, smart);
+    public Cuffie(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva, int colore, boolean wireless) {
+        super(codice, nome, marca, prezzo, iva);
         this.colore = new Color(colore);
         this.wireless = wireless;
     }
