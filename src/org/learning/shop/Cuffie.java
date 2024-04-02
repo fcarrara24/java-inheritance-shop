@@ -2,6 +2,7 @@ package org.learning.shop;
 
 import java.awt.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Cuffie extends Prodotto{
     private String colore;
@@ -36,10 +37,19 @@ public class Cuffie extends Prodotto{
     //to string
 
     @Override
-    public String toString() {
+    public String toString(boolean tessera) {
         return "Cuffie{" +
                 "colore='" + colore + '\'' +
                 ", wireless=" + wireless +
-                super.toString();
+                super.toString(tessera);
+    }
+
+    @Override
+    public BigDecimal getSconto(boolean tessera){
+        if (tessera && !this.wireless){
+            return this.getPrezzoIva().multiply(new BigDecimal(0.93)).setScale(2, RoundingMode.HALF_UP);
+        } else {
+            return super.getSconto(tessera).setScale(2, RoundingMode.HALF_UP);
+        }
     }
 }

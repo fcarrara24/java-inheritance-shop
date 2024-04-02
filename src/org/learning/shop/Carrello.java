@@ -85,6 +85,8 @@ public class Carrello {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        boolean tessera;
+        BigDecimal costoTotale = new BigDecimal(0);
         // uso un array list per un allocazione dinamica della memoria dell'array, senza bisogno di specificare sin da subito al
         // lunghezza dello stesso
         List<Prodotto> prodotti = new ArrayList<Prodotto>();
@@ -113,12 +115,17 @@ public class Carrello {
             }
         }
 
+        System.out.print("E' posssessore di tessera fedelta(boolean)? ");
+        tessera = Boolean.parseBoolean(sc.nextLine());
+
+
         sc.close();
         System.out.println("\n\nEcco un a lista aggiornata con tutti gli acquisti effettuati");
 
         // stampa tutti gli elementi ricevuti
         for (Prodotto p : prodotti){
-            System.out.println(p.toString());
+            System.out.println(p.toString(tessera));
+
         }
 
 

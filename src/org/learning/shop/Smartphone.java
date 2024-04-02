@@ -1,6 +1,7 @@
 package org.learning.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto{
     private String codiceIMEI;
@@ -36,10 +37,19 @@ public class Smartphone extends Prodotto{
 
 
     @Override
-    public String toString() {
+    public String toString(boolean tessera) {
         return "Smartphone{" +
                 "codiceIMEI='" + codiceIMEI + '\'' +
                 ", quantitaMemoria=" + quantitaMemoria +
-                super.toString();
+                super.toString(tessera);
+    }
+
+    @Override
+    public BigDecimal getSconto(boolean tessera){
+        if (tessera && this.quantitaMemoria.compareTo(new BigDecimal(128)) == -1){
+            return this.getPrezzoIva().multiply(new BigDecimal(0.95)).setScale(2, RoundingMode.HALF_UP);
+        } else {
+            return super.getSconto(tessera);
+        }
     }
 }

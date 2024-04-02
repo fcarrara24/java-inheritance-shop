@@ -1,6 +1,7 @@
 package org.learning.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Televisore extends Prodotto{
     private BigDecimal altezza;
@@ -45,11 +46,20 @@ public class Televisore extends Prodotto{
     //toString
 
     @Override
-    public String toString() {
+    public String toString(boolean tessera) {
         return "Televisore{" +
                 "altezza=" + altezza +
                 ", lunghezza=" + lunghezza +
                 ", smart=" + smart +
-                super.toString();
+                super.toString(tessera);
+    }
+
+    @Override
+    public BigDecimal getSconto(boolean tessera){
+        if (tessera && !this.isSmart()){
+            return this.getPrezzoIva().multiply(new BigDecimal(0.10)).setScale(2, RoundingMode.HALF_UP);
+        } else {
+            return super.getSconto(tessera);
+        }
     }
 }

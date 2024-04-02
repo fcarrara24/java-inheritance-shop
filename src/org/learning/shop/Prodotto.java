@@ -12,6 +12,7 @@ public class Prodotto {
     private BigDecimal iva;
 
 
+
     public Prodotto(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
         this.codice = codice;
         this.nome = nome;
@@ -37,6 +38,9 @@ public class Prodotto {
         return prezzo;
     }
 
+    public BigDecimal getSconto(boolean tessera){
+        return (tessera ? this.getPrezzoIva().multiply(new BigDecimal(0.98)): this.getPrezzoIva()).setScale(2, RoundingMode.HALF_UP);
+    }
     public BigDecimal getIva() {
         return iva;
     }
@@ -69,16 +73,17 @@ public class Prodotto {
 
 
 
-    @Override
-    public String toString() {
+    public String toString(boolean tessera) {
         return
                 "codice=" + codice +
-                ", nome='" + nome + '\'' +
-                ", marca='" + marca + '\'' +
-                ", prezzo=" + prezzo + '\'' +
-                ", iva=" + iva + '\'' +
-                ", prezzoIva="+ getPrezzoIva() + '\''
-                +"}";
+                        ", nome='" + nome + '\'' +
+                        ", marca='" + marca + '\'' +
+                        ", prezzo=" + prezzo + '\'' +
+                        ", iva=" + iva + '\'' +
+                        ", prezzoIva="+ getPrezzoIva() + '\'' +
+                        ", Prezzo scontato="+ getSconto(tessera) + '\''
+                        +"}";
     }
+
 
 }
