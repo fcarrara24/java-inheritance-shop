@@ -72,14 +72,14 @@ public class Prodotto {
 
     @Override
     public String toString() {
-        return "Prodotto{" +
+        return
                 "codice=" + codice +
                 ", nome='" + nome + '\'' +
                 ", marca='" + marca + '\'' +
                 ", prezzo=" + prezzo + '\'' +
                 ", iva=" + iva + '\'' +
-                ", prezzoIva="+ getPrezzoIva() + '\'' +
-                '}';
+                ", prezzoIva="+ getPrezzoIva() + '\''
+                +"}";
     }
 
 }

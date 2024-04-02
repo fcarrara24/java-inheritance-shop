@@ -12,11 +12,11 @@ public class Carrello {
      * creazione di una lista generics per il costruttore
      * @return
      */
-    public List<String> setProdottoParams(){
+    private static List<String> setProdottoParams(){
         Scanner prodScan = new Scanner(System.in);
         List<String> outList = new ArrayList<>();
 
-        System.out.print("inserire il codice: ");
+        System.out.print("inserire il codice (numero): ");
         outList.add(prodScan.nextLine());
 
         System.out.print("inserire il nome: ");
@@ -25,27 +25,64 @@ public class Carrello {
         System.out.print("inserire la marca: ");
         outList.add(prodScan.nextLine());
 
-        System.out.print("inserire il prezzo: ");
+        System.out.print("inserire il prezzo (numero con decimali): ");
         outList.add(prodScan.nextLine());
 
-        System.out.print("inserire l'iva: ");
+        System.out.print("inserire l'iva (numero con decimali): ");
         outList.add(prodScan.nextLine());
 
 
-        prodScan.close();
+
         return outList;
     }
 
-    public Cuffie aggiungiCuffie(){
+    private static Cuffie aggiungiCuffie(){
+        List<String> parametri = setProdottoParams();
+
         Scanner scan = new Scanner(System.in);
-        List<String> parametri = this.setProdottoParams();
-        System.out.print("inserire il colore in formato numerico ");
-        int colore = Integer.parseInt(scan.nextLine());
+        System.out.print("inserire il colore: ");
+        String colore = scan.nextLine();
         System.out.print("inserire se il dispositivo è wireless o meno (boolean): ");
         boolean wireless = Boolean.parseBoolean(scan.nextLine());
+        //closing scanner
 
         return new Cuffie(Integer.parseInt(parametri.get(0)), parametri.get(1), parametri.get(2), new BigDecimal(parametri.get(3)), new BigDecimal(parametri.get(4)), colore, wireless);
     }
+
+
+    private static Televisore aggiungiTv(){
+        List<String> parametri = setProdottoParams();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("inserire l'altezza(numero con decimali): ");
+        BigDecimal altezza = new BigDecimal(scan.nextLine());
+        System.out.print("Inserire la lunghezza(numero con decimali): ");
+        BigDecimal lunghezza = new BigDecimal(scan.nextLine());
+        System.out.print("inserire se il televisore è smart (boolean): ");
+        boolean smart = Boolean.parseBoolean(scan.nextLine());
+
+        //closing scanner
+
+        return new Televisore(Integer.parseInt(parametri.get(0)), parametri.get(1), parametri.get(2), new BigDecimal(parametri.get(3)), new BigDecimal(parametri.get(4)), altezza, lunghezza, smart);
+    }
+
+    private static Smartphone aggiungiSmartPhone(){
+        List<String> parametri = setProdottoParams();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("inserire il codice IMEI: ");
+        String codiceImei = scan.nextLine();
+        System.out.print("Inserire la quantitaMemoria: ");
+        BigDecimal quantitaMemoria = new BigDecimal(scan.nextLine());
+
+        //closing scanner
+
+        return new Smartphone(Integer.parseInt(parametri.get(0)), parametri.get(1), parametri.get(2), new BigDecimal(parametri.get(3)), new BigDecimal(parametri.get(4)), codiceImei, quantitaMemoria);
+    }
+
+
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // uso un array list per un allocazione dinamica della memoria dell'array, senza bisogno di specificare sin da subito al
@@ -55,7 +92,8 @@ public class Carrello {
 
 
         while (output != 0){
-            System.out.println("Seleziona il tipo di aggiunta: " + "\n" +
+            System.out.println("\n" +
+                    "Seleziona il tipo di aggiunta: " + "\n" +
                     "0: termina l'esecizione" + "\n" +
                     "1: aggiungi un Televisore" + "\n" +
                     "2: aggiungi uno smartphone" + "\n" +
@@ -64,10 +102,25 @@ public class Carrello {
 
             switch (output){
                 case 1:
-
+                    prodotti.add(aggiungiTv());
+                    break;
+                case 2:
+                    prodotti.add(aggiungiSmartPhone());
+                    break;
+                case 3:
+                    prodotti.add(aggiungiCuffie());
+                    break;
             }
         }
 
         sc.close();
+        System.out.println("\n\nEcco un a lista aggiornata con tutti gli acquisti effettuati");
+
+        // stampa tutti gli elementi ricevuti
+        for (Prodotto p : prodotti){
+            System.out.println(p.toString());
+        }
+
+
     }
 }

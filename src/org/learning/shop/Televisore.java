@@ -2,12 +2,12 @@ package org.learning.shop;
 
 import java.math.BigDecimal;
 
-public class Televisori extends Prodotto{
+public class Televisore extends Prodotto{
     private BigDecimal altezza;
     private BigDecimal lunghezza;
     private boolean smart;
 
-    public Televisori(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva, BigDecimal altezza, BigDecimal lunghezza, boolean smart) {
+    public Televisore(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva, BigDecimal altezza, BigDecimal lunghezza, boolean smart) {
         super(codice, nome, marca, prezzo, iva);
         this.altezza = altezza;
         this.lunghezza = lunghezza;
@@ -41,5 +41,15 @@ public class Televisori extends Prodotto{
 
     public void setSmart(boolean smart) {
         this.smart = smart;
+    }
+    //toString
+
+    @Override
+    public String toString() {
+        return "Televisore{" +
+                "altezza=" + altezza +
+                ", lunghezza=" + lunghezza +
+                ", smart=" + smart +
+                super.toString();
     }
 }

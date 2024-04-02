@@ -32,4 +32,14 @@ public class Smartphone extends Prodotto{
         this.quantitaMemoria = quantitaMemoria;
     }
 
+    // to string
+
+
+    @Override
+    public String toString() {
+        return "Smartphone{" +
+                "codiceIMEI='" + codiceIMEI + '\'' +
+                ", quantitaMemoria=" + quantitaMemoria +
+                super.toString();
+    }
 }
