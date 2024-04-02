@@ -72,7 +72,7 @@ public class Carrello {
         Scanner scan = new Scanner(System.in);
         System.out.print("inserire il codice IMEI: ");
         String codiceImei = scan.nextLine();
-        System.out.print("Inserire la quantitaMemoria: ");
+        System.out.print("Inserire la quantitaMemoria (numero deciamle): ");
         BigDecimal quantitaMemoria = new BigDecimal(scan.nextLine());
 
         //closing scanner

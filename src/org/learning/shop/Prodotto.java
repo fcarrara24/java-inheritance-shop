@@ -12,7 +12,6 @@ public class Prodotto {
     private BigDecimal iva;
 
 
-
     public Prodotto(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
         this.codice = codice;
         this.nome = nome;
