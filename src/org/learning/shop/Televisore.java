@@ -57,7 +57,7 @@ public class Televisore extends Prodotto{
     @Override
     public BigDecimal getSconto(boolean tessera){
         if (tessera && !this.isSmart()){
-            return this.getPrezzoIva().multiply(new BigDecimal(0.10)).setScale(2, RoundingMode.HALF_UP);
+            return this.getPrezzoIva().multiply(new BigDecimal(0.90)).setScale(2, RoundingMode.HALF_UP);
         } else {
             return super.getSconto(tessera);
         }

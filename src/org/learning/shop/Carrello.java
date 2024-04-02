@@ -87,6 +87,8 @@ public class Carrello {
         Scanner sc = new Scanner(System.in);
         boolean tessera;
         BigDecimal costoTotale = new BigDecimal(0);
+        BigDecimal costoTotaleScontato = new BigDecimal(0);
+
         // uso un array list per un allocazione dinamica della memoria dell'array, senza bisogno di specificare sin da subito al
         // lunghezza dello stesso
         List<Prodotto> prodotti = new ArrayList<Prodotto>();
@@ -126,7 +128,13 @@ public class Carrello {
         for (Prodotto p : prodotti){
             System.out.println(p.toString(tessera));
 
+            if(tessera) costoTotaleScontato = costoTotaleScontato.add(p.getSconto(tessera));
+            costoTotale = costoTotale.add(p.getPrezzoIva());
         }
+
+        System.out.println();
+        if (tessera) System.out.println("essendo un cliente con tessera, dovra pagare "+costoTotaleScontato+" al posto di "+costoTotale);
+        else System.out.println("Il totale da pagare è di "+costoTotale);
 
 
     }
