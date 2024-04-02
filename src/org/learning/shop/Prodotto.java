@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Prodotto {
+    private static final BigDecimal zero = new BigDecimal(0);
     private int codice;
 
     private String nome;
@@ -17,8 +18,8 @@ public class Prodotto {
         this.codice = codice;
         this.nome = nome;
         this.marca = marca;
-        this.prezzo = prezzo.setScale(2, RoundingMode.HALF_UP);
-        this.iva = iva;
+        this.prezzo = prezzo.max(zero).setScale(2, RoundingMode.HALF_UP);
+        this.iva = iva.max(zero);
     }
 
     //getters
